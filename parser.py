@@ -7,8 +7,6 @@ import csv
 import heapq
 import fasttext
 
-#model = fasttext.train_unsupervised('text8', model='skipgram')
-
 #we need to calculate success rate, how much it will take to succeed and 
 
 class Parser:

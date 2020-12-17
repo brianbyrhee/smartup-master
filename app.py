@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 @app.route('/')
 def student():
-   return render_template('student.html')
+   return render_template('input.html')
 
 
 @app.route('/result',methods = ['POST', 'GET'])

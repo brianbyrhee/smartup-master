@@ -1,0 +1,15 @@
+<!doctype html>
+<div class="header">
+   <h1>Smartup</h1>
+   <p>Here's what we found about projects most similar to yours!</p>
+ </div> 
+  <table border = 1>
+    {% for key, value in result.items() %}
+
+    <tr>
+       <th> {{ key }} </th>
+       <td> {{ value }} </td>
+    </tr>
+
+    {% endfor %}
+ </table>

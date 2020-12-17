@@ -25,9 +25,7 @@ types_dict.update({col: str for col in col_names if col not in types_dict})
 db = pd.read_csv('kickstarterdata2018.csv', dtype=types_dict)
 
 # commented out, can print the dataframe to see what it is
-# print(db)
-# for i in db:
-# 	print(i)
+print(db[:10])
 
 # upload ENTIRE pandas dataframe to database
 db.to_sql('projects', con = engine, if_exists = 'replace', chunksize = 1000)

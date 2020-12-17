@@ -10,15 +10,47 @@ connection = pymysql.connect(host='localhost',
 # Create cursor
 my_cursor = connection.cursor()
 
-# Execute Query
-my_cursor.execute("SELECT * from projects WHERE category ='Film & Video'")
+# define the category
+main_category = "Publishing" 
 
-# Fetch the records
+# query for finding all categories and storing them in a list
+
+sqlquery = "SELECT DISTINCT main_category from projects"
+
+my_cursor.execute(sqlquery)
 result = my_cursor.fetchall()
 
+maincategory_lst = []
+
 for i in result:
-    print(i)
-    print(i[0])
+    maincategory_lst.append(i[0])
+
+print(maincategory_lst)
+
+# query to find count of projects of main category
+sqlquery = "SELECT COUNT(id) from projects WHERE main_category = '{}'".format(main_category)
+my_cursor.execute(sqlquery)
+count = my_cursor.fetchall()
+
+print(count[0][0])
+
+
+
+# query to find count of successful projects of main category
+sqlquery = "SELECT COUNT(id) from projects WHERE main_category = '{}' AND (state = 'successful' OR state = 'live')".format(main_category)
+my_cursor.execute(sqlquery)
+success_count = my_cursor.fetchall()
+
+print(success_count[0][0])
+
+
+# query to find avg goal amount of main category
+sqlquery = "SELECT AVG(usd_goal_real) from projects WHERE main_category = '{}'".format(main_category)
+my_cursor.execute(sqlquery)
+success_count = my_cursor.fetchall()
+
+print(success_count[0][0])
+
 
 # Close the connection
 connection.close()
